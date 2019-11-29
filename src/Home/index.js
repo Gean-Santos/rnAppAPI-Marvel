@@ -75,18 +75,20 @@ export default class Home extends Component {
                     <Text style={styles.textPicker}>Starts With: </Text>
                         <Picker
                         style={styles.picker}
+                        textStyle={{fontSize: 22, fontWeight:'bold'}}
                         selectedValue={this.state.letter}
                         onValueChange={(itemValue, itemIndex) =>
                         this._byLetter(itemValue)
                         }>
-                            <Picker.Item label="Letter" value="" />
+                            <Picker.Item label="LETTER" value="" />
                             {this.state.letters.map(letra =>
-                            <Picker.Item label={letra.letter} 
+                            <Picker.Item label={letra.letter.toUpperCase()} 
                             value={letra.letter}  
-                                        key={letra.id}/>)
-                                    }
-                                    </Picker>
-                                </View>
+                            key={letra.id}
+                            />)
+                            }
+                        </Picker>
+                </View>
                 <FlatList 
                 style={styles.flat}
                 data={this.state.data}
