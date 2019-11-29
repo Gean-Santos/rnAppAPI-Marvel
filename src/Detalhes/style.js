@@ -23,19 +23,21 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color:'red',
         backgroundColor: '#FFF',
-        width: '100%',
+        width: '95%',
         textAlign: 'center',
         margin: 10
         
     },
     textDesc:{
-        padding:10,
+        padding:20,
         fontSize: 18,
         color:'#FFF',
         textAlign: 'justify',
         borderColor: '#FFF',
         borderWidth: 2,
-        borderRadius: 5
+        borderRadius: 5,
+        width: '95%',
+        margin: 10,
     },
     scrolDesc:{
         height: '5%'

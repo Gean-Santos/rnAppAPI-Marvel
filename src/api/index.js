@@ -8,14 +8,14 @@ const limit = 30
 const timestamp = Number(new Date());
 const hash = md5.create();
 hash.update(timestamp + keyPrivada +keyPublica);
-let char = ''
 
 
-export async function getPersonagens ()  {
+export default function getPersonagens ()  {
     const urlPersonagens = `${urlMarvel}characters?ts=${timestamp}&limit=${limit}&apikey=${keyPublica}&hash=${hash.hex()}`
     console.log(urlPersonagens)
-    const ax = await axios.get(urlPersonagens)
+    axios.get(urlPersonagens)
     .then(res => res.data.data.results)
-    .then(p => this.state.setState(p))  
+    .then(res => JSON.stringify(res))
+    
 }
 
