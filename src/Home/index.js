@@ -9,6 +9,8 @@ import styles from './styles'
 import md5 from 'js-md5';
 import axios from 'axios';
 
+import api from '../api';
+
 import Hero from '../components/Hero';
 
 const letras = require('../letters.json');
@@ -32,15 +34,16 @@ export default class Home extends Component {
         headerTintColor: '#FFF',
         
      }
+     
      state = {
          data:[],
          letters:[],
          letter:''
-     }
+     };
     
     componentDidMount() {
         hash.update(timestamp + PRIVATE_KEY + PUBLIC_KEY)
-        axios.get(`https://gateway.marvel.com/v1/public/characters?ts=${timestamp}&orderBy=name&limit=100&apikey=${PUBLIC_KEY}&hash=${hash.hex()}`)
+        api.get(`/characters?ts=${timestamp}&orderBy=name&limit=100&apikey=${PUBLIC_KEY}&hash=${hash.hex()}`)
         .then(per => per.data.data.results).then(personagens => this.setState({data:personagens}))
         .catch(error => console.log(error))  
 
@@ -49,7 +52,7 @@ export default class Home extends Component {
     }
     _byLetter = (letter) =>{
         hash.update(timestamp + PRIVATE_KEY + PUBLIC_KEY)
-        axios.get(`https://gateway.marvel.com/v1/public/characters?ts=${timestamp}&orderBy=name&nameStartsWith=${letter}&apikey=${PUBLIC_KEY}&hash=${hash.hex()}`)
+        api.get(`/characters?ts=${timestamp}&orderBy=name&nameStartsWith=${letter}&apikey=${PUBLIC_KEY}&hash=${hash.hex()}`)
         .then(per => per.data.data.results).then(personagens => this.setState({data:personagens}))
         .then(()=> this.setState({letter:letter}))
         .catch(error => console.log(error))  
@@ -91,6 +94,6 @@ export default class Home extends Component {
                 ItemSeparatorComponent={()=> <View style={styles.container} />}
             />
             </View>
-        )
-    }
+        );
+    };
 }
