@@ -24,6 +24,8 @@ export default class Description extends Component {
                <Image 
                     source={{uri: `${hero.thumbnail.path}.${hero.thumbnail.extension}`}} 
                     style={styles.image}
+                    resizeMethod='resize'
+                    resizeMode='stretch'
                 />
                 <View style={styles.viewText}>
                     <Text style={styles.textHero}>{hero.name}</Text>

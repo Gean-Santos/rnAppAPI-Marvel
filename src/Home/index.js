@@ -1,17 +1,16 @@
 import React, {Component} from 'react'
 import { 
-    TouchableOpacity, 
     View, 
     FlatList, 
     Text, 
-    Image, 
-    Alert,
     Picker
 } from 'react-native'
-import styles from './style'
+import styles from './styles'
 import md5 from 'js-md5';
 import axios from 'axios';
-import api from '../api'
+
+import Hero from '../components/Hero';
+
 const letras = require('../letters.json');
 
 const PUBLIC_KEY = 'a0766465ea4b57ae125da9e38d29844b'
@@ -57,12 +56,7 @@ export default class Home extends Component {
     }
     _renderItem = ({item}) => {
         return  (
-            <TouchableOpacity onPress={()=>this._onItemPress(item)} 
-                style={styles.item}>
-                <Image style={styles.image} 
-                source={{uri: `${item.thumbnail.path}.${item.thumbnail.extension}` }} />
-                <Text style={styles.text}>{item.name}</Text>
-            </TouchableOpacity>
+            <Hero {...item} onItemPress={() => this._onItemPress(item)}/>
         )
     }
     _onItemPress = (item) => {
